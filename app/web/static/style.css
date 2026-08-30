@@ -1,0 +1,560 @@
+/* Global Styles - UPPERCASE typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    font-family: 'Arial Black', 'Arial Bold', sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+    min-height: 100vh;
+    padding-bottom: 80px; /* Space for navbar */
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 2px solid #333;
+    z-index: 1000;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #888;
+}
+
+.nav-item.active {
+    color: #fff;
+    background-color: #333;
+    border-radius: 8px;
+}
+
+.nav-item:hover {
+    color: #fff;
+}
+
+.nav-icon {
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.nav-label {
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+/* Main Content */
+.content {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+/* Filter Bar */
+.filter-bar {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.filter-bar select {
+    background-color: #1e1e1e;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Channels Grid */
+.channels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.channel-card {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.channel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.channel-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #333;
+}
+
+.channel-info {
+    flex: 1;
+}
+
+.channel-name {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.channel-username {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.channel-stats {
+    font-size: 12px;
+    color: #4CAF50;
+}
+
+.channel-details-btn {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.channel-details-btn:hover {
+    background-color: #444;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    overflow-y: auto;
+}
+
+.modal.active {
+    display: block;
+}
+
+.modal-content {
+    background-color: #1e1e1e;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 800px;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 32px;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #fff;
+}
+
+.modal-body {
+    margin-top: 20px;
+}
+
+/* Tabs (sub-tabs) */
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    flex: 1;
+    background-color: #1e1e1e;
+    color: #888;
+    border: 1px solid #333;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    background-color: #333;
+    color: #fff;
+    border-color: #555;
+}
+
+.tab-btn:hover {
+    background-color: #2a2a2a;
+}
+
+.subtab-content {
+    display: none;
+}
+
+.subtab-content.active {
+    display: block;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="datetime-local"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    background-color: #1e1e1e;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.form-group input[type="file"] {
+    padding: 10px 0;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #1e1e1e;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    width: 100%;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #45a049;
+}
+
+/* Anime Grid */
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.anime-card {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.anime-card:hover {
+    transform: translateY(-5px);
+}
+
+.anime-cover {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+.anime-info {
+    padding: 15px;
+}
+
+.anime-title {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.anime-genres {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.anime-date {
+    font-size: 12px;
+    color: #4CAF50;
+    margin-bottom: 12px;
+}
+
+.anime-program-btn {
+    width: 100%;
+    background-color: #2196F3;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.anime-program-btn:hover {
+    background-color: #1976D2;
+}
+
+/* Groups List */
+.groups-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.group-card {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.group-info h3 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.group-stats {
+    font-size: 12px;
+    color: #888;
+}
+
+.group-activity {
+    text-align: right;
+}
+
+.activity-indicator {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.activity-level {
+    font-size: 12px;
+    color: #4CAF50;
+}
+
+/* Channel Control */
+.channel-control-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.channel-control-item {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.channel-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.status-indicator.active {
+    background-color: #4CAF50;
+}
+
+.status-indicator.testing {
+    background-color: #FFC107;
+}
+
+.status-indicator.inactive {
+    background-color: #F44336;
+}
+
+.status-text {
+    font-size: 14px;
+    color: #fff;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-small {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-activate {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.btn-deactivate {
+    background-color: #F44336;
+    color: #fff;
+}
+
+.btn-test {
+    background-color: #FFC107;
+    color: #000;
+}
+
+/* Chart container */
+.chart-container {
+    position: relative;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+/* Episode list */
+.episode-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.episode-item {
+    background-color: #2a2a2a;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.episode-title {
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.episode-stats {
+    font-size: 12px;
+    color: #888;
+    display: flex;
+    gap: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 8px 0;
+    }
+
+    .nav-label {
+        font-size: 9px;
+    }
+
+    .nav-icon {
+        font-size: 20px;
+    }
+
+    .channels-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .anime-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+}

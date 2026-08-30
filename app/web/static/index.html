@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANIME MANAGER - MINI APP</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-item active" data-tab="stats">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">STATISTIQUES</span>
+        </div>
+        <div class="nav-item" data-tab="publication">
+            <span class="nav-icon">📢</span>
+            <span class="nav-label">PUBLICATION</span>
+        </div>
+        <div class="nav-item" data-tab="animes">
+            <span class="nav-icon">🎬</span>
+            <span class="nav-label">ANIMES À VENIR</span>
+        </div>
+        <div class="nav-item" data-tab="groupes">
+            <span class="nav-icon">👥</span>
+            <span class="nav-label">GROUPES</span>
+        </div>
+        <div class="nav-item" data-tab="controle">
+            <span class="nav-icon">🎮</span>
+            <span class="nav-label">CONTRÔLE CANAL</span>
+        </div>
+        <div class="nav-item" data-tab="parametres">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-label">PARAMÈTRES</span>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+        <!-- Tab: STATISTIQUES -->
+        <section id="stats" class="tab-content active">
+            <h1>📊 STATISTIQUES DES CANAUX</h1>
+            
+            <div class="filter-bar">
+                <select id="sortFilter">
+                    <option value="alpha">A → Z</option>
+                    <option value="stats">MEILLEURES STATS</option>
+                </select>
+            </div>
+
+            <div id="channelsGrid" class="channels-grid">
+                <!-- Channels will be loaded here -->
+            </div>
+
+            <!-- Channel Detail Modal -->
+            <div id="channelModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2 id="modalChannelName">NOM DU CANAL</h2>
+                    <div class="modal-body">
+                        <canvas id="subscribersChart"></canvas>
+                        <div class="episode-list" id="episodeList"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: PUBLICATION -->
+        <section id="publication" class="tab-content">
+            <h1>📢 PUBLICATION</h1>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-subtab="direct">PUBLICATION DIRECTE</button>
+                <button class="tab-btn" data-subtab="schedule">PUBLICATION PROGRAMMÉE</button>
+            </div>
+
+            <!-- Direct Publication -->
+            <div id="directPub" class="subtab-content active">
+                <form id="directPubForm">
+                    <div class="form-group">
+                        <label>LÉGENDE / TEXTE</label>
+                        <textarea id="pubContent" rows="4" placeholder="Entrez votre message..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>MÉDIA (OPTIONNEL)</label>
+                        <input type="file" id="pubMedia" accept="image/*,video/*">
+                    </div>
+
+                    <div class="form-group">
+                        <label>CANAUX CIBLES</label>
+                        <div id="channelCheckboxes" class="checkbox-group">
+                            <!-- Checkboxes will be loaded here -->
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">PUBLIER MAINTENANT</button>
+                </form>
+            </div>
+
+            <!-- Scheduled Publication -->
+            <div id="schedulePub" class="subtab-content">
+                <form id="schedulePubForm">
+                    <div class="form-group">
+                        <label>LÉGENDE / TEXTE</label>
+                        <textarea id="scheduleContent" rows="4" placeholder="Entrez votre message..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>MÉDIA (OPTIONNEL)</label>
+                        <input type="file" id="scheduleMedia" accept="image/*,video/*">
+                    </div>
+
+                    <div class="form-group">
+                        <label>CANAUX CIBLES</label>
+                        <div id="scheduleChannelCheckboxes" class="checkbox-group">
+                            <!-- Checkboxes will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>DATE ET HEURE</label>
+                        <input type="datetime-local" id="scheduleDateTime" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>RÉPÉTITION</label>
+                        <select id="repeatType">
+                            <option value="NONE">AUCUNE</option>
+                            <option value="DAILY">QUOTIDIENNE</option>
+                            <option value="WEEKLY">HEBDOMADAIRE</option>
+                            <option value="INTERVAL">PERSONNALISÉE (INTERVALLE)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="intervalGroup" style="display:none;">
+                        <label>INTERVALLE (HEURES)</label>
+                        <input type="number" id="repeatInterval" min="1" value="24">
+                    </div>
+
+                    <button type="submit" class="btn-primary">PROGRAMMER PUBLICATION</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Tab: ANIMES À VENIR -->
+        <section id="animes" class="tab-content">
+            <h1>🎬 ANIMES À VENIR</h1>
+            <div id="upcomingAnimes" class="anime-grid">
+                <!-- Anime cards will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Tab: GROUPES -->
+        <section id="groupes" class="tab-content">
+            <h1>👥 GROUPES LES PLUS ANIMÉS</h1>
+            <div id="groupsList" class="groups-list">
+                <!-- Groups will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Tab: CONTRÔLE CANAL -->
+        <section id="controle" class="tab-content">
+            <h1>🎮 CONTRÔLE DE CANAL</h1>
+            <div id="channelControl" class="channel-control-list">
+                <!-- Channel controls will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Tab: PARAMÈTRES -->
+        <section id="parametres" class="tab-content">
+            <h1>⚙️ PARAMÈTRES</h1>
+            <form id="settingsForm">
+                <div class="form-group">
+                    <label>MODÈLE IA HUGGING FACE</label>
+                    <input type="text" id="hfModel" value="mistralai/Mistral-7B-Instruct-v0.2">
+                </div>
+
+                <div class="form-group">
+                    <label>PONDÉRATION LIKES (%)</label>
+                    <input type="number" id="weightLikes" min="0" max="100" value="50">
+                </div>
+
+                <div class="form-group">
+                    <label>PONDÉRATION VUES (%)</label>
+                    <input type="number" id="weightViews" min="0" max="100" value="30">
+                </div>
+
+                <div class="form-group">
+                    <label>PONDÉRATION COMMENTAIRES (%)</label>
+                    <input type="number" id="weightComments" min="0" max="100" value="20">
+                </div>
+
+                <div class="form-group">
+                    <label>FUSEAU HORAIRE</label>
+                    <select id="timezone">
+                        <option value="UTC">UTC</option>
+                        <option value="Europe/Paris">PARIS (CET)</option>
+                        <option value="America/New_York">NEW YORK (EST)</option>
+                        <option value="Asia/Tokyo">TOKYO (JST)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="debugMode"> MODE DEBUG
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary">SAUVEGARDER</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
