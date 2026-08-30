@@ -22,9 +22,9 @@ Projet complet de gestion d'animes pour canaux Telegram avec IA, Mini App et int
 ## 🛠️ INSTALLATION
 
 ### Prérequis
-- Compte Hugging Face
+- un hébergeur 
 - Bot Telegram (via @BotFather)
-- Token API Hugging Face
+- Token API 
 
 ### Variables d'Environnement
 
